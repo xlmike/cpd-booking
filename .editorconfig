@@ -55,3 +55,9 @@ dotnet_diagnostic.CA1707.severity = none
 dotnet_diagnostic.CA2007.severity = none
 dotnet_diagnostic.CA2234.severity = none   # string URLs are clearer in tests
 dotnet_diagnostic.CA2000.severity = none
+
+# Disable all code analysis diagnostics for EF Core Migration folders
+[**/Migrations/*.cs]
+generated_code = true
+dotnet_analyzer_diagnostic.severity = none
+
