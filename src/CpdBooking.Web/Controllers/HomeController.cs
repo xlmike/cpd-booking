@@ -1,6 +1,6 @@
 using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
 using CpdBooking.Web.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CpdBooking.Web.Controllers;
 

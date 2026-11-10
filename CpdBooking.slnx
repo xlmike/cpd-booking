@@ -4,8 +4,8 @@
     <Project Path="src/CpdBooking.Domain/CpdBooking.Domain.csproj" />
     <Project Path="src/CpdBooking.Infrastructure.SqlServer/CpdBooking.Infrastructure.SqlServer.csproj" />
     <Project Path="src/CpdBooking.Infrastructure/CpdBooking.Infrastructure.csproj" />
-    <Project Path="src/CpdBooking.IntegrationTests/CpdBooking.IntegrationTests.csproj" />
-    <Project Path="src/CpdBooking.UnitTests/CpdBooking.UnitTests.csproj" />
+    <Project Path="tests/CpdBooking.IntegrationTests/CpdBooking.IntegrationTests.csproj" />
+    <Project Path="tests/CpdBooking.UnitTests/CpdBooking.UnitTests.csproj" />
     <Project Path="src/CpdBooking.Web/CpdBooking.Web.csproj" />
   </Folder>
 </Solution>
