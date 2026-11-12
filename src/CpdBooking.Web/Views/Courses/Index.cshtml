@@ -1,0 +1,50 @@
+@model CourseListViewModel
+@{
+    ViewData["Title"] = "Find a teacher training course";
+    var count = Model.Courses.Count;
+}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">Find a teacher training course</h1>
+
+    @* Works without JavaScript (the form submits a GET search). With JavaScript, results filter as you type. *@
+    <form method="get" action="/courses" role="search">
+      <div class="govuk-form-group">
+        <label class="govuk-label govuk-label--s" for="search">Search by course or provider</label>
+        <input class="govuk-input govuk-!-width-two-thirds" id="search" name="search" type="search"
+               value="@Model.Search" maxlength="100" spellcheck="false"
+               aria-controls="course-list" data-module="app-course-filter">
+      </div>
+      <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">Search</button>
+    </form>
+
+    <p class="govuk-body" id="course-count" role="status">@count @(count == 1 ? "course" : "courses") found</p>
+
+    <ul class="govuk-list app-course-list" id="course-list">
+      @foreach (var course in Model.Courses)
+      {
+        <li class="app-course-list__item" data-search="@course.Title @course.Provider">
+          <h2 class="govuk-heading-m govuk-!-margin-bottom-2">
+            <a class="govuk-link" href="/courses/@course.Id">@course.Title</a>
+          </h2>
+          <p class="govuk-body">@course.Summary</p>
+          <dl class="govuk-summary-list govuk-summary-list--no-border app-course-list__meta">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Provider</dt>
+              <dd class="govuk-summary-list__value">@course.Provider</dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Starts</dt>
+              <dd class="govuk-summary-list__value">@UkTime.Format(course.StartsAt)</dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Places left</dt>
+              <dd class="govuk-summary-list__value">@course.PlacesLeft</dd>
+            </div>
+          </dl>
+        </li>
+      }
+    </ul>
+  </div>
+</div>

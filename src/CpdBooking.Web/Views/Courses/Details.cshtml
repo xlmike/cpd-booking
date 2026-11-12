@@ -1,0 +1,44 @@
+@model CourseSummary
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+@section BeforeContent {
+  <a href="/courses" class="govuk-back-link">Back to all courses</a>
+}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <span class="govuk-caption-l">@Model.Provider</span>
+    <h1 class="govuk-heading-l">@Model.Title</h1>
+    <p class="govuk-body-l">@Model.Summary</p>
+
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Starts</dt>
+        <dd class="govuk-summary-list__value">@UkTime.Format(Model.StartsAt)</dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Places left</dt>
+        <dd class="govuk-summary-list__value">@Model.PlacesLeft</dd>
+      </div>
+    </dl>
+
+    @if (Model.IsOpenForBooking)
+    {
+      <a href="/courses/@Model.Id/book" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
+        Book a place
+        <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+          <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+        </svg>
+      </a>
+    }
+    else
+    {
+      <div class="govuk-inset-text">
+        @(Model.PlacesLeft <= 0 ? "This course is full." : "Bookings for this course have closed.")
+        <a class="govuk-link" href="/courses">Find another course</a>.
+      </div>
+    }
+  </div>
+</div>

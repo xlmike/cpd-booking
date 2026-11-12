@@ -1,0 +1,40 @@
+@model BookingFormViewModel
+@{
+    var course = Model.Course!;
+    var emailError = ViewData.ModelState[nameof(Model.Email)]?.Errors.FirstOrDefault()?.ErrorMessage;
+    // GOV.UK pattern: prefix the page title with "Error:" so screen reader users know straight away.
+    ViewData["Title"] = (ViewData.ModelState.IsValid ? "" : "Error: ") + "What is your email address?";
+    var describedBy = emailError is null ? "Email-hint" : "Email-hint Email-error";
+}
+
+@section BeforeContent {
+  <a href="/courses/@course.Id" class="govuk-back-link">Back</a>
+}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <partial name="_ErrorSummary" />
+
+    @* The form tag helper adds the anti-forgery token. novalidate: we use GOV.UK error messages, not browser ones. *@
+    <form method="post" asp-controller="Bookings" asp-action="Create" asp-route-courseId="@course.Id" novalidate>
+      <div class="govuk-form-group @(emailError is null ? "" : "govuk-form-group--error")">
+        <span class="govuk-caption-l">@course.Title</span>
+        <h1 class="govuk-label-wrapper">
+          <label class="govuk-label govuk-label--l" for="Email">What is your email address?</label>
+        </h1>
+        <div id="Email-hint" class="govuk-hint">We will use this to manage your booking.</div>
+        @if (emailError is not null)
+        {
+          <p id="Email-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> @emailError
+          </p>
+        }
+        <input class="govuk-input @(emailError is null ? "" : "govuk-input--error")" id="Email" name="Email"
+               type="email" spellcheck="false" autocomplete="email" value="@Model.Email"
+               aria-describedby="@describedBy">
+      </div>
+
+      <button type="submit" class="govuk-button" data-module="govuk-button" data-prevent-double-click="true">Confirm booking</button>
+    </form>
+  </div>
+</div>
