@@ -1,0 +1,22 @@
+@model BookingConfirmation
+@{
+    ViewData["Title"] = "Booking confirmed";
+}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-panel govuk-panel--confirmation">
+      <h1 class="govuk-panel__title">Booking confirmed</h1>
+      <div class="govuk-panel__body">
+        Your reference number<br><strong>@Model.Reference</strong>
+      </div>
+    </div>
+
+    <p class="govuk-body">You have a place on <strong>@Model.CourseTitle</strong>, starting @UkTime.Format(Model.StartsAt).</p>
+
+    <h2 class="govuk-heading-m">What happens next</h2>
+    <p class="govuk-body">The course provider will contact you before the course starts. Keep your reference number in case you need to change your booking.</p>
+
+    <p class="govuk-body"><a class="govuk-link" href="/courses">Find another course</a></p>
+  </div>
+</div>

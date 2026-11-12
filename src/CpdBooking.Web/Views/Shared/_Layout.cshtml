@@ -1,50 +1,64 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" class="govuk-template">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - CpdBooking.Web</title>
-    <script type="importmap"></script>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/CpdBooking.Web.styles.css" asp-append-version="true" />
+  <meta charset="utf-8">
+  <title>@ViewData["Title"] – Book a teacher training course</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#1d70b8">
+  <link rel="stylesheet" href="~/css/app.css" asp-append-version="true">
 </head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CpdBooking.Web</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+<body class="govuk-template__body">
+  @* Adds the js-enabled class. An external file, because the Content Security Policy blocks inline scripts. *@
+  <script src="~/js/govuk-init.js" asp-append-version="true"></script>
+
+  <a href="#main-content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+  @* This practice project must not use the GOV.UK crown or GDS Transport font: they are only for GOV.UK services. *@
+  <header class="app-header">
+    <section aria-label="Service information" class="govuk-service-navigation" data-module="govuk-service-navigation">
+      <div class="govuk-width-container">
+        <div class="govuk-service-navigation__container">
+          <span class="govuk-service-navigation__service-name">
+            <a href="/" class="govuk-service-navigation__link">Book a teacher training course</a>
+          </span>
+        </div>
+      </div>
+    </section>
+  </header>
+
+  <div class="govuk-width-container">
+    <div class="govuk-phase-banner">
+      <p class="govuk-phase-banner__content">
+        <strong class="govuk-tag govuk-phase-banner__content__tag">Practice</strong>
+        <span class="govuk-phase-banner__text">This is a practice project, not a real government service.</span>
+      </p>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2026 - CpdBooking.Web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    @await RenderSectionAsync("BeforeContent", required: false)
+
+    <main class="govuk-main-wrapper" id="main-content">
+      @RenderBody()
+    </main>
+  </div>
+
+  <footer class="govuk-footer">
+    <div class="govuk-width-container">
+      <div class="govuk-footer__meta">
+        <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+          <h2 class="govuk-visually-hidden">Support links</h2>
+          <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility">Accessibility statement</a>
+            </li>
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/api/v1/courses">API</a>
+            </li>
+          </ul>
         </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="~/js/app.mjs" asp-append-version="true"></script>
 </body>
 </html>

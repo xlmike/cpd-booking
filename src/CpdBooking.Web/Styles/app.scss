@@ -1,0 +1,20 @@
+// GOV.UK Frontend with a system font: GDS Transport is only licensed for GOV.UK services.
+@use "govuk-frontend/dist/govuk" as govuk with (
+  $govuk-font-family: (arial, sans-serif),
+  $govuk-assets-path: "/lib/govuk/assets/"
+);
+
+// Our own components use the app- prefix (GOV.UK convention) so they never clash with govuk- classes.
+.app-header {
+  border-bottom: 10px solid govuk.govuk-colour("blue");
+}
+
+.app-course-list__item {
+  padding-bottom: govuk.govuk-spacing(4);
+  margin-bottom: govuk.govuk-spacing(6);
+  border-bottom: 1px solid govuk.$govuk-border-colour;
+}
+
+.app-course-list__meta {
+  margin-bottom: 0;
+}

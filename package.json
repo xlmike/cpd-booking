@@ -1,0 +1,23 @@
+{
+  "name": "cpd-booking",
+  "private": true,
+  "description": "Front-end build and accessibility tests for the CPD booking practice service",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "copy:govuk": "node scripts/copy-govuk-assets.mjs",
+    "build:css": "sass --load-path=node_modules --style=compressed --no-source-map src/CpdBooking.Web/Styles/app.scss src/CpdBooking.Web/wwwroot/css/app.css",
+    "build": "npm run copy:govuk && npm run build:css",
+    "test:a11y": "playwright test --config tests/accessibility/playwright.config.mjs"
+  },
+  "dependencies": {
+    "govuk-frontend": "6.6.0"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.14.0",
+    "@playwright/test": "1.65.0",
+    "sass": "1.108.1"
+  }
+}
