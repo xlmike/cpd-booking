@@ -13,7 +13,6 @@ namespace CpdBooking.Web.Api;
 /// </summary>
 [ApiController]
 [Route("api/v1/courses")]
-[Produces("application/json")]
 public sealed class CoursesApiController(CourseCatalogue catalogue, BookingService bookings) : ControllerBase
 {
     [HttpGet]
