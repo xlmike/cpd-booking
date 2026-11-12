@@ -1,0 +1,23 @@
+# Keeps dependencies patched: answers OWASP A03 Software Supply Chain Failures.
+version: 2
+updates:
+  - package-ecosystem: nuget
+    directory: "/"
+    schedule: { interval: weekly }
+    groups:
+      microsoft:
+        patterns: ["Microsoft.*"]
+      test-tools:
+        patterns: ["xunit*", "coverlet*"]
+
+  - package-ecosystem: npm
+    directory: "/"
+    schedule: { interval: weekly }
+
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule: { interval: weekly }
+
+  - package-ecosystem: terraform
+    directory: "/infra/terraform"
+    schedule: { interval: weekly }

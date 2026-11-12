@@ -1,0 +1,5 @@
+# Replace with your GitHub username or team. Code owners are asked to review every PR
+# that changes their files, and branch protection can require their approval.
+*                @xlmike
+/infra/          @xlmike
+/.github/        @xlmike
