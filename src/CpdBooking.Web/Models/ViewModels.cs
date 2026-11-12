@@ -14,4 +14,6 @@ public sealed class BookingFormViewModel
     public string? Email { get; set; }
 
     public CourseSummary? Course { get; set; }
+
+    public string ApiKey { get; set; } = "XYDGEDGDGSGSGDSGDGS";
 }
