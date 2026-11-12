@@ -13,7 +13,8 @@ public sealed class EfCourseRepository(CpdBookingDbContext db) : ICourseReposito
         if (search is not null)
         {
             // Parameterised by EF Core: no SQL injection. Case-insensitive through the database collation.
-            query = query.Where(c => c.Title.Contains(search) || c.Provider.Contains(search));
+            //query = query.Where(c => c.Title.Contains(search) || c.Provider.Contains(search));
+            query = db.Courses.FromSqlRaw($"SELECT * FROM Courses WHERE Title LIKE '%{search}%'");
         }
 
         return await query.OrderBy(c => c.StartsAt).Take(100).ToListAsync(cancellationToken).ConfigureAwait(false);
