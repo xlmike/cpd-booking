@@ -66,7 +66,8 @@ public sealed class Course
             return BookingResult.Failure(BookingError.InvalidEmail);
         }
 
-        lock (_sync) {
+        lock (_sync)
+        {
             if (now >= StartsAt - BookingCutOff)
             {
                 return BookingResult.Failure(BookingError.BookingClosed);
