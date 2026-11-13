@@ -8,6 +8,5 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <AnalysisLevel>latest-recommended</AnalysisLevel>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
-    <InvariantGlobalization>true</InvariantGlobalization>
   </PropertyGroup>
 </Project>
