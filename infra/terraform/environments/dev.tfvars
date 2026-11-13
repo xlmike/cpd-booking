@@ -1,6 +1,6 @@
 # Non-secret settings for the dev environment. alert_email comes from TF_VAR_alert_email.
 environment               = "dev"
-location                  = "uksouth"
+location                  = "ukwest"
 resource_group_name       = "rg-cpd-dev"
 app_service_sku           = "B1"
 sql_sku                   = "Basic"
