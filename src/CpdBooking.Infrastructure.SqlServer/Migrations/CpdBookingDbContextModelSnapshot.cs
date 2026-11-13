@@ -25,7 +25,6 @@ namespace CpdBooking.Infrastructure.SqlServer.Migrations
             modelBuilder.Entity("CpdBooking.Domain.Booking", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTimeOffset>("BookedAt")
@@ -58,7 +57,6 @@ namespace CpdBooking.Infrastructure.SqlServer.Migrations
             modelBuilder.Entity("CpdBooking.Domain.Course", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("BookedPlaces")

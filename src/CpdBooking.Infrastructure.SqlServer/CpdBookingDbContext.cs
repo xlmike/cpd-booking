@@ -15,6 +15,7 @@ public sealed class CpdBookingDbContext(DbContextOptions<CpdBookingDbContext> op
         modelBuilder.Entity<Course>(course =>
         {
             course.HasKey(c => c.Id);
+            course.Property(c => c.Id).ValueGeneratedNever(); // the domain sets the Id
             course.Property(c => c.Title).HasMaxLength(200).IsRequired();
             course.Property(c => c.Provider).HasMaxLength(200).IsRequired();
             course.Property(c => c.Summary).HasMaxLength(1000);
@@ -31,6 +32,10 @@ public sealed class CpdBookingDbContext(DbContextOptions<CpdBookingDbContext> op
         modelBuilder.Entity<Booking>(booking =>
         {
             booking.HasKey(b => b.Id);
+            // The domain creates the Id (Guid.NewGuid()). Without this, EF Core assumes a Guid key is
+            // generated on add, sees a non-empty Id on a new booking, treats it as an existing row and
+            // issues an UPDATE that affects 0 rows: a false DbUpdateConcurrencyException.
+            booking.Property(b => b.Id).ValueGeneratedNever();
             booking.Property(b => b.Email).HasMaxLength(EmailAddress.MaxLength).IsRequired();
             booking.Property(b => b.Reference).HasMaxLength(20).IsRequired();
 
